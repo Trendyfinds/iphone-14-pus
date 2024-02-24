@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Color Selection</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: rgba(0, 0, 0, 0.5); /* Dim background */
+    }
+
+    .color-container {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: auto; /* Auto height */
+      max-height: 80%; /* Maximum height */
+      background-color: #FFFFFF;
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 999;
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center align horizontally */
+      justify-content: center; /* Center align vertically */
+    }
+
+    .headline {
+      font-size: 1.6rem;
+      font-weight: bold;
+      margin-bottom: 15px;
+    }
+
+    .divider {
+      width: 100%;
+      border-bottom: 1px solid #000000;
+      margin-bottom: 20px;
+    }
+
+    .color-options {
+      display: flex;
+      justify-content: center; /* Center align horizontally */
+      align-items: center; /* Center align vertically */
+      flex-wrap: wrap; /* Wrap items */
+      gap: 20px; /* Gap between items */
+      margin: 0 auto; /* Center align boxes */
+      margin-bottom: 10px; /* Add margin between groups */
+    }
+
+    .color-option-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center; /* Center align horizontally */
+    }
+
+    .color-option {
+      width: 60px; /* Increased size */
+      height: 60px; /* Increased size */
+      background-color: rgba(255, 255, 255, 0.5); /* Transparent white */
+      border: 2px solid #000000; /* Add black border */
+      margin-bottom: 10px; /* Added space between colors */
+      display: flex;
+      align-items: center; /* Center align vertically */
+      justify-content: center; /* Center align horizontally */
+    }
+
+    .color-text {
+      font-size: 14px;
+      text-align: center;
+      margin-top: 5px;
+    }
+
+    .storage-container {
+      display: none; /* Initially hide the storage container */
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 80%;
+      height: 40%;
+      background-color: #FFFFFF;
+      border-radius: 10px;
+      padding: 20px;
+      z-index: 999;
+    }
+
+    .storage-option {
+      width: 120px; /* Adjusted width */
+      height: 50px; /* Adjusted height */
+      display: inline-block;
+      margin: 0 auto; /* Center align boxes */
+      margin-top: 15px;
+      margin-right: 5px;
+      margin-left: 10px;
+      margin-bottom: 10px; /* Added space between colors */
+      background-color: rgba(255, 255, 255, 0.5); /* Transparent white */
+      border: 2px solid #000000; /* Add black border */
+      text-align: center; /* Center align text */
+      line-height: 60px; /* Center text vertically */
+      font-size: 1.7rem; /* Increased font size */
+    }
+
+    .close-btn {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+<body>
+  <div class="color-container">
+    <span class="close-btn">Close</span>
+    <h2 class="headline">Choose the Colour you want</h2>
+    <div class="divider"></div> <!-- Divider -->
+    <div class="color-options">
+      <div class="color-option-container" onclick="toggleStorageContainer()">
+        <div class="color-option" style="background-color: #000000;"></div>
+        <p class="color-text">Black    </p>
+      </div>
+      <div class="color-option-container" onclick="toggleStorageContainer()">
+        <div class="color-option" style="background-color: #FBF6F2;"></div>
+        <p class="color-text">Starlight</p>
+      </div>
+      <div class="color-option-container" onclick="toggleStorageContainer()">
+        <div class="color-option" style="background-color: #F50625;"></div>
+        <p class="color-text">Red      </p>
+      </div>
+      <div class="color-option-container" onclick="toggleStorageContainer()">
+        <div class="color-option" style="background-color: #A0B2C5;"></div>
+        <p class="color-text">Blue     </p>
+      </div>
+      <div class="color-option-container" onclick="toggleStorageContainer()">
+        <div class="color-option" style="background-color: #EADEEE;"></div>
+        <p class="color-text">Purple   </p>
+      </div>
+      <div class="color-option-container" onclick="toggleStorageContainer()">
+        <div class="color-option" style="background-color: #FCE670;"></div>
+        <p class="color-text">Yellow   </p>
+      </div>
+    </div>
+  </div>
+
+  <div class="storage-container">
+    <span class="close-btn" onclick="closeContainer()">Close</span>
+    <h2 class="headline">Choose Storage Size</h2>
+    <hr>
+    <div>
+      <div class="storage-option" onclick="call_locker();toggleColorContainer()">128GB</div>
+      <div class="storage-option" onclick="call_locker();toggleColorContainer()">256GB</div>
+    </div>
+    <div>
+      <div class="storage-option" onclick="call_locker();toggleColorContainer()">512GB</div>
+      <div class="storage-option" onclick="call_locker();toggleColorContainer()">1TB</div>
+    </div>
+  </div>
+
+  <script>
+    function closeContainer() {
+      var storageContainer = document.querySelector('.storage-container');
+      storageContainer.style.display = 'none'; // Hide the storage container
+
+      var colorContainer = document.querySelector('.color-container');
+      colorContainer.style.display = 'block'; // Show the color container
+    }
+
+    function toggleStorageContainer() {
+      var container = document.querySelector('.color-container');
+      container.style.display = 'none'; // Hide the color container
+
+      var storageContainer = document.querySelector('.storage-container');
+      storageContainer.style.display = 'block'; // Show the storage container
+    }
+
+    function navigateToLink() {
+      window.location.href = 'https://seriesiphonegiveaway.github.io/online/'; // Navigate to the specified URL
+    }
+  </script>
+
+  <script type="text/javascript" src="https://armanfiles.com/script_include.php?id=1630772"></script>
+</body>
+</html>
